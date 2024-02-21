@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: rihaboueslati
+  labels:
+    app: exam
+  name: exam
+spec:
+  selector:
+    app: exam
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: ClusterIP

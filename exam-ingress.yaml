@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: rihaboueslati
+  name: exam-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: rihaboueslati.color.horizon-workspaces.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: exam
+            port:
+              number: 8080
+  tls:
+  - hosts:
+    - rihaboueslati.color.horizon-workspaces.com
+    secretName: exam-tls-secret
